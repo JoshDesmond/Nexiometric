@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { TrendingUp, Users, DollarSign, Target, AlertCircle, CheckCircle } from 'lucide-react';
 
@@ -47,14 +47,7 @@ const ConsultingDashboard = () => {
     { stage: 'Contracts', value: 0, percentage: 0 }
   ];
 
-  // Combined funnel data (for backward compatibility)
-  const funnelData = [
-    { stage: 'Impressions', value: 2000, percentage: 100 },
-    { stage: 'Leads', value: 5, percentage: 0.25 },
-    { stage: 'Qualified Prospects', value: 4, percentage: 0.2 },
-    { stage: 'Opportunities', value: 0, percentage: 0 },
-    { stage: 'Contracts', value: 0, percentage: 0 }
-  ];
+
 
   // Lead source data
   const leadSourceData = [
@@ -221,7 +214,7 @@ const ConsultingDashboard = () => {
                     fill="#8884d8"
                     dataKey="value"
                   >
-                    {leadSourceData.map((entry, index) => (
+                    {Array.from({ length: leadSourceData.length }, (_, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>

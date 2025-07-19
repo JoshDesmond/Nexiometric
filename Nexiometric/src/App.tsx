@@ -1,19 +1,16 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './Home'
 import AutomatiDashboard from './AutomatiDashboard'
+import AlgaeMarketingDashboard from './AlgaeMarketingDashboard'
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={
-          <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-            <h1 className="text-6xl font-light text-white font-inter">
-              Nexiometric
-            </h1>
-          </div>
-        } />
+        <Route path="/" element={<Home />} />
         <Route path="/demo/automati" element={<AutomatiDashboard />} />
+        <Route path="/demo/algae-marketing" element={<AlgaeMarketingDashboard />} />
       </Routes>
     </Router>
   )
