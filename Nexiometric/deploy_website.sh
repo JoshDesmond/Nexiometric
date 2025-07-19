@@ -134,7 +134,15 @@ fi
 print_info "Testing SSH connection..."
 if ! ssh -p "$VPS_PORT" -o ConnectTimeout=5 -o BatchMode=yes "$VPS_USER@$VPS_HOST" exit 2>/dev/null; then
     print_error "Cannot connect to $VPS_USER@$VPS_HOST:$VPS_PORT"
-    print_error "Please check your SSH configuration and ensure key-based auth is set up"
+    print_error "SSH authentication failed. This could be due to:"
+    print_error "  1. SSH agent not running - run 'eval \$(ssh-agent -s)' and 'ssh-add ~/.ssh/your_key'"
+    print_error "  2. SSH key not added to agent - run 'ssh-add ~/.ssh/your_key'"
+    print_error "  3. SSH key not authorized on server - add your public key to ~/.ssh/authorized_keys on the server"
+    print_error "  4. Incorrect SSH configuration - check your ~/.ssh/config file"
+    print_error ""
+    print_error "To start SSH agent and add your key:"
+    print_error "  eval \$(ssh-agent -s)"
+    print_error "  ssh-add ~/.ssh/id_rsa  # or your specific key file"
     exit 1
 fi
 print_status "SSH connection successful"
